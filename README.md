@@ -22,7 +22,7 @@ more!
 `npm install`
 
 ##### To run server:  
-First, copy the example config file and fill in the appropriate values:
+First, copy the example config file and fill in the appropriate values:  
 `cp config/config.js.example config.js`  
 Then run the server:  
   `node run server.js`
