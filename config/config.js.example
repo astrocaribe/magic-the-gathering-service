@@ -1,0 +1,35 @@
+/**
+ * This config object is used by node server processes. it currently is used solely for
+ * configuring the database that powers the queries for this micro service.
+ *
+ * This file MUST change depending on the environment this app is running in! Any keys in the
+ * exported object need to be updated for the targeted environment for the server being deployed.
+ */
+
+module.exports = {
+  "db:" {
+    "host" : "someHost",
+    "user" : "user",
+    "password" : "password",
+    "database" : "dataBase",
+    "connectionLimit" : "10",
+    "ssl" : ""
+  },
+  bunyan: {
+    name: 'ch_micro_alerts_node',
+    streams: [
+      {
+        level: 'info',
+        stream: process.stdout
+      },
+      {
+        level: 'error',
+        path: 'logs/error.log'
+      },
+      {
+        level: 'debug',
+        stream: process.stderr,
+      },
+    ]
+  }
+};

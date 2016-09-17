@@ -1,0 +1,34 @@
+{
+  "name": "magic_the_gathering",
+  "version": "1.0.0",
+  "description": "This is a micro service to provision a Magic The Gathering card collection.",
+  "main": "server.js",
+  "directories":{
+    "test":"test"
+  },
+  "scripts": {
+    "test": "instanbul cover _mocha -- test/types --recursive -R spec -t 5000"
+  },
+  "keywords": [
+    "magic",
+    "the gathering",
+    "gathering",
+    "card",
+    "collection"
+  ],
+  "author": "Tommy LeBlanc",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-bunyan-logger": "^1.3.1",
+    "mysql": "^2.11.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "jshint-stylish": "^2.2.1",
+    "minimist": "^1.2.0",
+    "mocha": "^3.0.2",
+    "rewire": "^2.5.2",
+    "sinon": "^1.17.5"
+  }
+}
