@@ -17,7 +17,7 @@ describe('logging', function(){
   });
 
   describe('.logExceptOnTest', function(){
-    it('should not log a message when NODE_ENV !== \'test\'', function(done){
+    it('should not log a message when NODE_ENV == \'test\'', function(done){
       process.env.NODE_ENV = 'test';
 
       expect(logging.logExceptOnTest('Test Message')).to.be.undefined;
