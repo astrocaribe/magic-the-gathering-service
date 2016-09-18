@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "This is a micro service to provision a Magic The Gathering card collection.",
   "main": "server.js",
-  "directories":{
-    "test":"test"
+  "directories": {
+    "test": "test"
   },
   "scripts": {
-    "test": "instanbul cover _mocha -- test/types --recursive -R spec -t 5000"
+    "test": "istanbul cover _mocha -- test/types --recursive -R spec -t 5000"
   },
   "keywords": [
     "magic",
@@ -25,10 +25,12 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
     "jshint-stylish": "^2.2.1",
     "minimist": "^1.2.0",
     "mocha": "^3.0.2",
     "rewire": "^2.5.2",
-    "sinon": "^1.17.5"
+    "sinon": "^1.17.5",
+    "supertest": "^2.0.0"
   }
 }

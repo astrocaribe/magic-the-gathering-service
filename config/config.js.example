@@ -7,7 +7,7 @@
  */
 
 module.exports = {
-  "db:" {
+  "db": {
     "host" : "someHost",
     "user" : "user",
     "password" : "password",
@@ -16,7 +16,7 @@ module.exports = {
     "ssl" : ""
   },
   bunyan: {
-    name: 'ch_micro_alerts_node',
+    name: 'magic_the_gathering',
     streams: [
       {
         level: 'info',
