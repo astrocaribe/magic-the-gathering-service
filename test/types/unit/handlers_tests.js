@@ -124,7 +124,6 @@ describe('handlers', function(){
       handlers.getCardsHandler(req, res);
 
       var callArgs = res.send.getCall(0).args[0];
-      console.log(callArgs);
 
       expect(sendSpy.calledOnce).to.be.true;
       expect(statusSpy.calledOnce).to.be.true;
