@@ -3,3 +3,4 @@ config.js
 logs
 coverage
 .tern-project
+.DS_Store
