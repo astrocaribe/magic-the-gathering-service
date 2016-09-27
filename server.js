@@ -1,14 +1,12 @@
 'use strict';
 
-var express = require('express');
-var parseArgs = require('minimist');
+var express      = require('express');
+var parseArgs    = require('minimist');
 var bunyanLogger = require('express-bunyan-logger');
 
-var config  = require('./config/config');
-var error   = require('./helpers/error');
-var logging = require('./helpers/logging');
+var config   = require('./config/config');
+var logging  = require('./helpers/logging');
 var handlers = require('./handlers');
-var card    = require('./card');
 
 // Parse cli arguments when stating server and assign to variables
 // Set defaults values if not defines

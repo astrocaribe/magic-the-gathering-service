@@ -1,15 +1,18 @@
 'use strict';
 
-var logging = require('./helpers/logging');
-var error   = require('./helpers/error');
-var card    = require('./card');
+var logging     = require('./helpers/logging');
+var error       = require('./helpers/error');
+var logic       = require('./logic');
+var serviceInfo = require('./package.json');
 
 // GET /ping route handler
 module.exports.pingHandler = function pingHandler(req, res){
     logging.logExceptOnTest('[INFO]: ' + req.method + ' ' + req.url + ' starting.');
 
     var jsonResponse = {};
-    jsonResponse.data = 'This service is alive!';
+    jsonResponse.name = serviceInfo.name;
+    jsonResponse.version = serviceInfo.version;
+    jsonResponse.description = serviceInfo.description;
 
     res.send(jsonResponse);
     logging.logExceptOnTest('[INFO]: ' + req.method + ' ' + req.url + ' finished.');
@@ -19,7 +22,7 @@ module.exports.pingHandler = function pingHandler(req, res){
 module.exports.getCardsHandler = function getCardsHandler(req, res){
   logging.logExceptOnTest('[INFO]: ' + req.method + ' ' + req.url + ' starting.');
 
-  card.getCardCollection(function(err, results){
+  logic.getCardCollection(function(err, results){
     if (!err) {
       res.status(200);
       res.send(results);

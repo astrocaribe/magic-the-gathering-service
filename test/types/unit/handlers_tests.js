@@ -7,8 +7,8 @@ var request    = require('supertest');
 var sinon      = require('sinon');
 var proxyquire = require('proxyquire').noCallThru();
 
-var card       = {'getCardCollection': function(){}};
-var handlers   = proxyquire('../../../handlers', {'./card': card});
+var logic      = {'getCardCollection': function(){}};
+var handlers   = proxyquire('../../../handlers', {'./logic': logic});
 
 // Mock request and response
 var req    = {};
@@ -38,8 +38,14 @@ describe('handlers', function(){
       var spy = sinon.spy(res, 'send');
 
       handlers.pingHandler(req, res);
+      var callArgs = res.send.getCall(0).args[0];
+
       expect(spy.calledOnce).to.be.true;
-      expect(spy.calledWith({'data': 'This service is alive!'})).to.be.true;
+
+      expect(callArgs).to.be.an('object');
+      expect(callArgs).to.include.keys('name', 'version', 'description');
+      expect(callArgs.name).to.equal('magic-the-gathering');
+      expect(callArgs.version).to.equal('1.0.0');
 
       done();
     });
@@ -95,12 +101,12 @@ describe('handlers', function(){
     });
 
     afterEach(function(){
-      card.getCardCollection.restore();
+      logic.getCardCollection.restore();
       res.status.restore();
     });
 
     it('should call getCardCollection with a valid response', function(done){
-      sinon.stub(card, 'getCardCollection').callsArgWith(0, null, 'someResult');
+      sinon.stub(logic, 'getCardCollection').callsArgWith(0, null, 'someResult');
       var sendSpy = sinon.spy(res, 'send');
       var statusSpy = sinon.spy(res, 'status');
 
@@ -117,7 +123,7 @@ describe('handlers', function(){
     });
 
     it('should call getCardCollection with error response', function(done){
-      sinon.stub(card, 'getCardCollection').callsArgWith(0, 'someError', 'someResult');
+      sinon.stub(logic, 'getCardCollection').callsArgWith(0, 'someError', 'someResult');
       var sendSpy = sinon.spy(res, 'send');
       var statusSpy = sinon.spy(res, 'status');
 
