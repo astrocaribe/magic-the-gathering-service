@@ -1,5 +1,5 @@
 {
-  "name": "magic-the-gathering",
+  "name": "magic-the-gathering-service",
   "version": "1.0.0",
   "description": "This is a micro service to provision a Magic The Gathering card collection.",
   "main": "server.js",
