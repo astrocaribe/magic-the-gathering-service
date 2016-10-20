@@ -1,5 +1,9 @@
 # Magic The Gathering Card Collection API
 
+## Project Status
+[![Build Status](https://travis-ci.org/astrocaribe/magic-the-gathering-service.svg?branch=develop)](https://travis-ci.org/astrocaribe/magic-the-gathering-service)  
+This project build status is tracked with Travis CI.
+
 ## Scope
 This micro service will help manage a Magic The Gathering card collection
 database, allowing a user to add, delete, update, and read cards from a MySQL
