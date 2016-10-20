@@ -44,7 +44,7 @@ describe('handlers', function(){
 
       expect(callArgs).to.be.an('object');
       expect(callArgs).to.include.keys('name', 'version', 'description');
-      expect(callArgs.name).to.equal('magic-the-gathering');
+      expect(callArgs.name).to.equal('magic-the-gathering-service');
       expect(callArgs.version).to.equal('1.0.0');
 
       done();

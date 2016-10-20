@@ -7,7 +7,28 @@ database using CRUD.
 
 This project is going to be used to compare with other [project that serves the
 same purpose](https://github.com/astrocaribe/magic_collection), but coded in
-Java using the [Play framework](https://playframework.com/).
+Java using the [Play framework](https://playframework.com/).  
+
+I know, "There are already projects like this already!", I can hear you say! But
+this is a way to practice with JavaScript development using Node.js and Express,
+with a different methodology that makes sense to me!
+
+## Methodology
+The idea is to make the service as defined as possible, clear boundaries that
+can be tested thoroughly. Hence, this service is broken up into 3 mayor parts:
+
+  * **server** - This unit takes care of the running server and route handling.
+    This is basically Express, and so there is no need to test the framework
+    itself (yes, I do trust that it does what it says it does!).
+  * **logic** - This unit handles the logic that needs to take place between
+    making the request, fetching the data, and returning the response.
+  * **database** - This unit takes care of one thing and one thing only;
+    performing queries and returning data.
+
+Separating the service into units allows for distinct, testable units, with the
+exception of the database unit. Since a reliable database connection is outside
+our control, this piece will remain untested until I figure out a way to
+reasonably handle database connections.
 
 ## Current Routes
 Below are the current routes that this service handles, with a brief
