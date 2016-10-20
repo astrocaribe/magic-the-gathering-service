@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "5.10"
+  - "5.11"
+
+# Command to install dependencies
+install: "npm install"
+
+# Connamd to run tests
+script: npm test
