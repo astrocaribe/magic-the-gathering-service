@@ -22,7 +22,9 @@ module.exports.pingHandler = function pingHandler(req, res){
 module.exports.getCardsHandler = function getCardsHandler(req, res){
   logging.logExceptOnTest('[INFO]: ' + req.method + ' ' + req.url + ' starting.');
 
-  logic.getCardCollection(function(err, results){
+  var page = req.query.page;
+
+  logic.getCardCollection(page, function(err, results){
     if (!err) {
       res.status(200);
       res.send(results);

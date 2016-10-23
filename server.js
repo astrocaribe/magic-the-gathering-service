@@ -1,11 +1,12 @@
 'use strict';
 
-var express      = require('express');
-var parseArgs    = require('minimist');
+var express = require('express');
+var parseArgs = require('minimist');
 var bunyanLogger = require('express-bunyan-logger');
+var bodyParser = require('body-parser');
 
-var config   = require('./config/config');
-var logging  = require('./helpers/logging');
+var config = require('./config/config');
+var logging = require('./helpers/logging');
 var handlers = require('./handlers');
 
 // Parse cli arguments when stating server and assign to variables
@@ -19,6 +20,7 @@ var log = bunyanLogger(config.bunyan);
 // Service configuration
 var app = express();
 app.use(log);
+app.use(bodyParser.json());
 
 /* *************** ROUTES *************** */
 app.get('/ping', handlers.pingHandler);
