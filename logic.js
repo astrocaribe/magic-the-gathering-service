@@ -3,7 +3,7 @@
 var db = require('./db');
 
 // Logic for GET /cards collection
-exports.getCardCollection = (callback) => {
+exports.getCardCollection = (page, callback) => {
 
   db.getCardsQuery((err, results) => {
 
@@ -27,8 +27,20 @@ exports.getCardCollection = (callback) => {
 
       // Prepare jsonResponse
       var jsonResponse = {};
-      jsonResponse.data = results;
-      jsonResponse.count = results.length;
+
+      if (page !== undefined) {
+        // Set up start, end for paginated data, based on requested page
+        var startIndex = Number(page) * 10;
+        var endIndex = (Number(page) + 1) * 10;
+
+        jsonResponse.data = results.slice(startIndex, endIndex);
+        jsonResponse.page = page;
+      } else {
+        jsonResponse.data = results.slice(0, 10);
+        jsonResponse.page = 0;
+      }
+
+      jsonResponse.totalCount = results.length;
 
       callback(null, jsonResponse);
     } else {

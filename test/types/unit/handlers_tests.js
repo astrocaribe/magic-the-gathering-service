@@ -1,19 +1,18 @@
-/* global describe, it */
+/* global describe, it, beforeEach, afterEach */
 
 'use strict';
 
-var expect     = require('chai').expect;
-var request    = require('supertest');
-var sinon      = require('sinon');
+var expect = require('chai').expect;
+var sinon = require('sinon');
 var proxyquire = require('proxyquire').noCallThru();
 
-var logic      = {'getCardCollection': function(){}};
-var handlers   = proxyquire('../../../handlers', {'./logic': logic});
+var logic = {'getCardCollection': function(){}};
+var handlers = proxyquire('../../../handlers', {'./logic': logic});
 
 // Mock request and response
-var req    = {};
-var res    = {};
-res.send   = function(){};
+var req = {};
+var res = {};
+res.send = function(){};
 res.status = function(){};
 
 //  Mock and mute logger
@@ -98,6 +97,8 @@ describe('handlers', function(){
       req.methos = 'GET';
       req.url = '/cards';
       req.log = log;
+      req.query = {};
+      req.query.page = 0;
     });
 
     afterEach(function(){
@@ -106,7 +107,7 @@ describe('handlers', function(){
     });
 
     it('should call getCardCollection with a valid response', function(done){
-      sinon.stub(logic, 'getCardCollection').callsArgWith(0, null, 'someResult');
+      sinon.stub(logic, 'getCardCollection').callsArgWith(1, null, 'someResult');
       var sendSpy = sinon.spy(res, 'send');
       var statusSpy = sinon.spy(res, 'status');
 
@@ -123,7 +124,7 @@ describe('handlers', function(){
     });
 
     it('should call getCardCollection with error response', function(done){
-      sinon.stub(logic, 'getCardCollection').callsArgWith(0, 'someError', 'someResult');
+      sinon.stub(logic, 'getCardCollection').callsArgWith(1, 'someError', 'someResult');
       var sendSpy = sinon.spy(res, 'send');
       var statusSpy = sinon.spy(res, 'status');
 
